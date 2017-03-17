@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StartActivityHelper.startsecendActivityTraslate(MainActivity.this,AnimotionHelper.fadebundle(MainActivity.this));
+                StartActivityHelper.startsecendActivityTraslate(MainActivity.this,AnimotionHelper.sharedelementsbundle(MainActivity.this,button,"shareview"));
             }
         });
     }
