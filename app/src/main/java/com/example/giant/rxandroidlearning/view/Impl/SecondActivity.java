@@ -1,4 +1,4 @@
-package com.example.giant.rxandroidlearning.view;
+package com.example.giant.rxandroidlearning.view.Impl;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

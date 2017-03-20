@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.giant.rxandroidlearning.view.SecondActivity">
+    tools:context="com.example.giant.rxandroidlearning.view.Impl.SecondActivity">
 
     <Button
         android:layout_centerInParent="true"
