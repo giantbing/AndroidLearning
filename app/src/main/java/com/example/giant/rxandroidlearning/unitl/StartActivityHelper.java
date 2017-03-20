@@ -11,7 +11,7 @@ import android.transition.Slide;
 
 import com.example.giant.rxandroidlearning.view.SecondActivity;
 
-/**
+/*
  * Created by giant on 2017/3/17.
  */
 
