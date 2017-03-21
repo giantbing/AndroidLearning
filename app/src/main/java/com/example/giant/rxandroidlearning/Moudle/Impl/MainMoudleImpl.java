@@ -18,6 +18,8 @@ import com.orhanobut.logger.Logger;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import static android.content.Context.AUDIO_SERVICE;
+
 /*
  * Created by giant on 2017/3/20.
  */
@@ -53,6 +55,8 @@ public class MainMoudleImpl implements MainMoudle {
         try {
             mediaPlayer.setSurface(mSurface);
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            AudioManager audioManager = (AudioManager) context.getSystemService(AUDIO_SERVICE);
+            audioManager.setStreamMute(AudioManager.STREAM_MUSIC , true);
             mediaPlayer.reset();
             mediaPlayer.setDataSource(path);
             mediaPlayer.prepare();
