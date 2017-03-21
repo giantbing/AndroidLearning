@@ -33,7 +33,7 @@ public class MainMoudleImpl implements MainMoudle {
 
    @Override
     public void FillTexture(Surface surfaceTexture) {
-        //FileHelper.copyFilesFromRaw(context,R.raw.testvideo,"testvideo.mp4",FileHelper.getInerSDPath()+"/"+"giant");
+        FileHelper.copyFilesFromRaw(context,R.raw.testvideo,"testvideo.mp4",FileHelper.getInerSDPath()+"/"+"giant");
         playvideo(FileHelper.getInerSDPath()+"/"+"giant/testvideo.mp4",surfaceTexture);
     }
 
@@ -57,6 +57,19 @@ public class MainMoudleImpl implements MainMoudle {
             mediaPlayer.setDataSource(path);
             mediaPlayer.prepare();
             mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    try
+                    {
+                        mediaPlayer.start();
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
