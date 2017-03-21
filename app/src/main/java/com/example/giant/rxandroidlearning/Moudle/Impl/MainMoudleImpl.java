@@ -6,6 +6,8 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.view.Surface;
 import android.view.TextureView;
 
@@ -44,6 +46,28 @@ public class MainMoudleImpl implements MainMoudle {
         surfaceTexture = null;
         mediaPlayer.stop();
         mediaPlayer.release();
+    }
+
+    @Override
+    public void Login(final String username,final String password,final OnLoginFinishedListener loginFinishedListener) {
+        new Handler().postDelayed(new Runnable() {
+            @Override public void run() {
+                boolean error = false;
+                if (TextUtils.isEmpty(username)){
+                    loginFinishedListener.onUsernameError();
+                    error = true;
+                    return;
+                }
+                if (TextUtils.isEmpty(password)){
+                    loginFinishedListener.onPasswordError();
+                    error = true;
+                    return;
+                }
+                if (!error){
+                    loginFinishedListener.onSuccess();
+                }
+            }
+        }, 2000);
     }
 
     /*

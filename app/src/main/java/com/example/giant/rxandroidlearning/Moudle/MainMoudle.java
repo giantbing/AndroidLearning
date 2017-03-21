@@ -8,9 +8,16 @@ package com.example.giant.rxandroidlearning.Moudle;
 import android.view.Surface;
 
 public interface MainMoudle {
+    interface OnLoginFinishedListener {
+        void onUsernameError();
 
+        void onPasswordError();
+
+        void onSuccess();
+    }
     void FillTexture(Surface surfaceTexture);
 
     void StopTexture(Surface surfaceTexture);
 
+    void Login(String username,String password,OnLoginFinishedListener loginFinishedListener);
 }

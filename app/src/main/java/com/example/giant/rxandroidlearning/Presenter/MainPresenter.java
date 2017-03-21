@@ -17,4 +17,6 @@ public interface MainPresenter {
      void onTextureReady(Surface surfaceTexture);
 
      void onTextureDestroy(Surface surfaceTexture);
+
+     void validateCredentials(String username, String password);
 }
