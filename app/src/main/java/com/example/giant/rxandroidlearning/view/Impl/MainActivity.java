@@ -38,6 +38,7 @@ public class MainActivity extends Activity implements MainView {
         ButterKnife.bind(this);
         mainTextureView.setSurfaceTextureListener(VideoListener);
 
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
