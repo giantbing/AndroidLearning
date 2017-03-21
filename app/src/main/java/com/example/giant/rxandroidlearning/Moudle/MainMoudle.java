@@ -4,15 +4,13 @@ package com.example.giant.rxandroidlearning.Moudle;
  * Created by giant on 2017/3/20.
  */
 
-import android.view.TextureView;
+
+import android.view.Surface;
 
 public interface MainMoudle {
 
-    interface onFinshLisner {
+    void FillTexture(Surface surfaceTexture);
 
-        void onFinsh(TextureView.SurfaceTextureListener TextureListener);
+    void StopTexture(Surface surfaceTexture);
 
-    }
-
-    void loadTexture(onFinshLisner finshLisner);
 }

@@ -1,6 +1,8 @@
 package com.example.giant.rxandroidlearning.Presenter.Impl;
 
 import android.content.Context;
+import android.graphics.SurfaceTexture;
+import android.view.Surface;
 import android.view.TextureView;
 
 import com.example.giant.rxandroidlearning.Moudle.Impl.MainMoudleImpl;
@@ -13,7 +15,7 @@ import com.orhanobut.logger.Logger;
  * Created by giant on 2017/3/20.
  */
 
-public class MainPresenterImpl implements MainPresenter,MainMoudle.onFinshLisner{
+public class MainPresenterImpl implements MainPresenter{
 
     private MainMoudle mMainMoudle;
     private MainView mMainview;
@@ -28,7 +30,6 @@ public class MainPresenterImpl implements MainPresenter,MainMoudle.onFinshLisner
     @Override
     public void onResume() {
 
-        mMainMoudle.loadTexture(this);
 
     }
 
@@ -38,11 +39,20 @@ public class MainPresenterImpl implements MainPresenter,MainMoudle.onFinshLisner
     }
 
     @Override
-    public void onFinsh(TextureView.SurfaceTextureListener TextureListener) {
+    public void onTextureReady(Surface surfaceTexture) {
 
-        if (mMainview != null)
-
-        mMainview.setAdapter(TextureListener);
+        mMainMoudle.FillTexture(surfaceTexture);
 
     }
+
+    @Override
+    public void onTextureDestroy(Surface surfaceTexture) {
+
+        mMainMoudle.StopTexture(surfaceTexture);
+
+    }
+
+
+
+
 }

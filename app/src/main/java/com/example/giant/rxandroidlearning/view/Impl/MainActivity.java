@@ -1,7 +1,10 @@
 package com.example.giant.rxandroidlearning.view.Impl;
 
+import android.app.Activity;
+import android.graphics.SurfaceTexture;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
@@ -10,21 +13,25 @@ import com.example.giant.rxandroidlearning.Presenter.Impl.MainPresenterImpl;
 import com.example.giant.rxandroidlearning.Presenter.MainPresenter;
 import com.example.giant.rxandroidlearning.R;
 import com.example.giant.rxandroidlearning.unitl.AnimotionHelper;
+import com.example.giant.rxandroidlearning.unitl.DataHelper;
+import com.example.giant.rxandroidlearning.unitl.FileHelper;
 import com.example.giant.rxandroidlearning.unitl.StartActivityHelper;
 import com.example.giant.rxandroidlearning.view.MainView;
+import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends Activity implements MainView {
 
     @BindView(R.id.mainTextureView)
     TextureView mainTextureView;
-    private MainPresenter mPresenter;
 
     @BindView(R.id.button)
     Button button;
 
+    private MainPresenter mPresenter;
+    private Surface mSurface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,26 +40,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
         AnimotionHelper.enableAtcivitytrans(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        initView();
-        // RxView.clickEvents(button).throttleFirst(500, TimeUnit.MILLISECONDS) // RxBinding 代码，后面的文章有解释 .throttleFirst(500, TimeUnit.MILLISECONDS) // 设置防抖间隔为 500ms .subscribe(subscriber);
-//        Observable.just(1, 2, 3, 4).observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(Schedulers.io())
-//                .subscribe(new Observer<Integer>() {
-//                    @Override
-//                    public void onCompleted() {
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onNext(Integer integer) {
-//                        Log.d("RXTAG", "this is " + integer);
-//                    }
-//                });
+        mainTextureView.setSurfaceTextureListener(VideoListener);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,11 +50,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         });
     }
 
-    private void initView(){
 
-        mainTextureView = new TextureView(this);
-
-    }
 
     @Override
     protected void onResume() {
@@ -79,10 +64,32 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mPresenter.onDestroy();
     }
 
+    TextureView.SurfaceTextureListener VideoListener = new TextureView.SurfaceTextureListener() {
+
+        @Override
+        public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i1) {
+
+            mSurface = new Surface(surfaceTexture);
+            mPresenter.onTextureReady(mSurface);
+        }
 
 
-    @Override
-    public void setAdapter(TextureView.SurfaceTextureListener TextureListener) {
-        mainTextureView.setSurfaceTextureListener(TextureListener);
-    }
+
+        @Override
+        public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i1) {
+
+        }
+
+        @Override
+        public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+
+            mPresenter.onTextureDestroy(mSurface);
+            return true;
+        }
+
+        @Override
+        public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+
+        }
+    };
 }

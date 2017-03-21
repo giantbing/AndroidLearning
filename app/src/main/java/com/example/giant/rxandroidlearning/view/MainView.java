@@ -7,5 +7,4 @@ import android.view.TextureView;
  */
 
 public interface MainView {
-    void setAdapter(TextureView.SurfaceTextureListener TextureListener);
 }
