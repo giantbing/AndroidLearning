@@ -15,8 +15,8 @@ import es.dmoral.toasty.Toasty;
 
 public class ToastHelper {
 
-    private static int LENGTH_SHORT;
-    private static int LENGTH_LONG;
+    public static int LENGTH_SHORT;
+    public static int LENGTH_LONG;
     static {
         LENGTH_SHORT = Toast.LENGTH_SHORT;
         LENGTH_LONG = Toast.LENGTH_LONG;
@@ -24,33 +24,33 @@ public class ToastHelper {
     /**
      * @param withIcon 是否开启图标
      */
-    public static void error(Context mContext,String msg,int Length,Boolean withIcon){
-        Toasty.error(mContext, msg, Length, withIcon).show();
+    public static void error(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon){
+        Toasty.error(context, message, duration, withIcon).show();
     }
     /**
      * @param withIcon 是否开启图标
      */
-    public static void success(Context mContext,String msg,int Length,Boolean withIcon){
-        Toasty.success(mContext, msg, Length, withIcon).show();
+    public static void success(@NonNull Context context, @NonNull CharSequence msg, int Length, boolean withIcon){
+        Toasty.success(context, msg, Length, withIcon).show();
     }
     /**
      * @param withIcon 是否开启图标
      */
-    public static void info(Context mContext,String msg,int Length,Boolean withIcon){
-        Toasty.info(mContext, msg, Length, withIcon).show();
+    public static void info(@NonNull Context context, @NonNull CharSequence msg, int Length, boolean withIcon){
+        Toasty.info(context, msg, Length, withIcon).show();
     }
     /**
      * @param withIcon 是否开启图标
      */
-    public static void warning(Context mContext,String msg,int Length,Boolean withIcon){
-        Toasty.warning(mContext, msg, Length, withIcon).show();
+    public static void warning(@NonNull Context context, @NonNull CharSequence msg, int Length, boolean withIcon){
+        Toasty.warning(context, msg, Length, withIcon).show();
     }
 
-    public static void normal(Context mContext,String msg){
+    public static void normal(@NonNull Context mContext,@NonNull CharSequence msg){
         Toasty.normal(mContext, msg).show();
     }
 
-    public static void normal(Context mContext, String msg, Drawable mdrawable){
+    public static void normal(@NonNull Context mContext,@NonNull CharSequence msg, Drawable mdrawable){
         Toasty.normal(mContext,msg, mdrawable).show();
     }
     /**

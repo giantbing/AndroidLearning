@@ -18,6 +18,7 @@ import com.example.giant.rxandroidlearning.R;
 import com.example.giant.rxandroidlearning.unitl.AnimotionHelper;
 import com.example.giant.rxandroidlearning.unitl.DaggerTest;
 import com.example.giant.rxandroidlearning.unitl.StartActivityHelper;
+import com.example.giant.rxandroidlearning.unitl.ToastHelper;
 import com.example.giant.rxandroidlearning.view.LoginView;
 import com.orhanobut.logger.Logger;
 import com.pnikosis.materialishprogress.ProgressWheel;
@@ -63,7 +64,7 @@ public class LoginActivity extends Activity implements LoginView,BaseView {
         initclick();
         mainTextureView.setSurfaceTextureListener(VideoListener);
         progressWheel.stopSpinning();
-        Logger.d(daggerTest.getI());
+        ToastHelper.info(this,""+daggerTest.getI(),ToastHelper.LENGTH_SHORT,true);
     }
 
 
