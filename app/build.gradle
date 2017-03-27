@@ -45,4 +45,5 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
     testCompile 'junit:junit:4.12'
     compile 'javax.inject:javax.inject:1'
+    compile 'com.github.GrenderG:Toasty:1.1.4'
 }
