@@ -10,13 +10,19 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.giant.rxandroidlearning.Base.BaseView;
+import com.example.giant.rxandroidlearning.Dagger.compoents.DaggerMainCompoent;
+import com.example.giant.rxandroidlearning.Dagger.compoents.MainCompoent;
 import com.example.giant.rxandroidlearning.Presenter.Impl.MainPresenterImpl;
 import com.example.giant.rxandroidlearning.Presenter.MainPresenter;
 import com.example.giant.rxandroidlearning.R;
 import com.example.giant.rxandroidlearning.unitl.AnimotionHelper;
+import com.example.giant.rxandroidlearning.unitl.DaggerTest;
 import com.example.giant.rxandroidlearning.unitl.StartActivityHelper;
 import com.example.giant.rxandroidlearning.view.LoginView;
+import com.orhanobut.logger.Logger;
 import com.pnikosis.materialishprogress.ProgressWheel;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,7 +42,8 @@ public class LoginActivity extends Activity implements LoginView,BaseView {
     Button btnLogin;
     @BindView(R.id.progress_wheel)
     ProgressWheel progressWheel;
-
+    @Inject
+    DaggerTest daggerTest;
 
     private MainPresenter mPresenter;
     private Surface mSurface;
@@ -49,10 +56,14 @@ public class LoginActivity extends Activity implements LoginView,BaseView {
         AnimotionHelper.enableAtcivitytrans(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        // 使用Dagger2生成的类 生成组件进行构造，并注入
+        DaggerMainCompoent.builder()
+                .build()
+                .inject(this);
         initclick();
         mainTextureView.setSurfaceTextureListener(VideoListener);
         progressWheel.stopSpinning();
-
+        Logger.d(daggerTest.getI());
     }
 
 
