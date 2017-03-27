@@ -4,7 +4,7 @@ import com.example.giant.rxandroidlearning.view.Impl.LoginActivity;
 
 import dagger.Component;
 
-/**
+/**@author giant
  * Created by giant on 2017/3/27.
  */
 @Component
