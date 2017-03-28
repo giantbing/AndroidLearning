@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import com.example.giant.rxandroidlearning.Base.BaseView;
 import com.example.giant.rxandroidlearning.Dagger.compoents.DaggerMainCompoent;
-import com.example.giant.rxandroidlearning.Dagger.compoents.MainCompoent;
+import com.example.giant.rxandroidlearning.Dagger.modules.MainModule;
 import com.example.giant.rxandroidlearning.Presenter.Impl.MainPresenterImpl;
 import com.example.giant.rxandroidlearning.Presenter.MainPresenter;
 import com.example.giant.rxandroidlearning.R;
@@ -58,7 +58,7 @@ public class LoginActivity extends Activity implements LoginView,BaseView {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         // 使用Dagger2生成的类 生成组件进行构造，并注入
-        DaggerMainCompoent.builder()
+        DaggerMainCompoent.builder().mainModule(new MainModule())
                 .build()
                 .inject(this);
         initclick();
