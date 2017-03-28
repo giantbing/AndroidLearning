@@ -21,4 +21,10 @@ public class DaggerTest {
     public void setI(int i) {
         this.i = i;
     }
+
+    public  DaggerTest(int i){
+
+        this. i = i;
+
+    }
 }

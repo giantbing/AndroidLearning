@@ -1,5 +1,6 @@
 package com.example.giant.rxandroidlearning.Dagger.compoents;
 
+import com.example.giant.rxandroidlearning.Dagger.modules.MainModule;
 import com.example.giant.rxandroidlearning.view.Impl.LoginActivity;
 
 import dagger.Component;
@@ -7,7 +8,7 @@ import dagger.Component;
 /**@author giant
  * Created by giant on 2017/3/27.
  */
-@Component
+@Component(modules = {MainModule.class})
 public interface MainCompoent {
     /**
      * 需要用到这个连接器的对象，就是这个对象里面有需要注入的属性
