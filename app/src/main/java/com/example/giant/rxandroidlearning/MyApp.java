@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.giant.rxandroidlearning.Dagger.compoents.AppCompoent;
 import com.example.giant.rxandroidlearning.Dagger.compoents.DaggerAppCompoent;
 import com.example.giant.rxandroidlearning.Dagger.modules.AppModule;
+import com.example.giant.rxandroidlearning.unitl.ApiBuildTest;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -47,7 +48,11 @@ public class MyApp extends Application {
             }
             LeakCanary.install(this);
         }
-
+        // TODO: 2017/3/30  学习建造模式
+        ApiBuildTest Api = ApiBuildTest.Builder()
+                .setHostName("www.giantbing.com")
+                .setPort("8080")
+                .build();
     }
 
     public AppCompoent getAppCompoent(){
