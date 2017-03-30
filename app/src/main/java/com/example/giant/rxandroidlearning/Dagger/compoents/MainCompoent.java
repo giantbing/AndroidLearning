@@ -8,7 +8,7 @@ import dagger.Component;
 /**@author giant
  * Created by giant on 2017/3/27.
  */
-@Component(modules = {MainModule.class})
+@Component
 public interface MainCompoent {
     /**
      * 需要用到这个连接器的对象，就是这个对象里面有需要注入的属性

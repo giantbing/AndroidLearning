@@ -1,26 +1,29 @@
 package com.example.giant.rxandroidlearning.Dagger.modules;
 
-import com.example.giant.rxandroidlearning.unitl.DaggerTest;
+import android.app.Activity;
+
+
+import com.example.giant.rxandroidlearning.Dagger.scopes.PerActivity;
 
 import dagger.Module;
 import dagger.Provides;
 
-/**233
+/**
+ * 233
  * Created by giant on 2017/3/28.
  */
 @Module
 public class MainModule {
 
-    @Provides
-    public DaggerTest provideMainModule (int i) {
+    private final Activity activity;
 
-        return  new DaggerTest(i);
-
+    public MainModule(Activity activity) {
+        this.activity = activity;
     }
-    @Provides
-    public int providei(){
-
-        return 2;
-
+    @Provides@PerActivity
+    public Activity getActivity(){
+        return this.activity;
     }
+
+
 }

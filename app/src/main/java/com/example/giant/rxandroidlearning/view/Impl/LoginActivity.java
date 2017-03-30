@@ -10,8 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.giant.rxandroidlearning.Base.BaseView;
+import com.example.giant.rxandroidlearning.Dagger.compoents.ActivityCompoent;
+import com.example.giant.rxandroidlearning.Dagger.compoents.DaggerActivityCompoent;
 import com.example.giant.rxandroidlearning.Dagger.compoents.DaggerMainCompoent;
 import com.example.giant.rxandroidlearning.Dagger.modules.MainModule;
+import com.example.giant.rxandroidlearning.MyApp;
 import com.example.giant.rxandroidlearning.Presenter.Impl.MainPresenterImpl;
 import com.example.giant.rxandroidlearning.Presenter.MainPresenter;
 import com.example.giant.rxandroidlearning.R;
@@ -48,7 +51,7 @@ public class LoginActivity extends Activity implements LoginView,BaseView {
 
     private MainPresenter mPresenter;
     private Surface mSurface;
-
+    private ActivityCompoent activityCompoent=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +61,8 @@ public class LoginActivity extends Activity implements LoginView,BaseView {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         // 使用Dagger2生成的类 生成组件进行构造，并注入
-        DaggerMainCompoent.builder().mainModule(new MainModule())
-                .build()
-                .inject(this);
+        activityCompoent = DaggerActivityCompoent.builder().appCompoent(((MyApp)getApplication()).getAppCompoent()).mainModule(new MainModule(this)).build();
+
         initclick();
         mainTextureView.setSurfaceTextureListener(VideoListener);
         progressWheel.stopSpinning();
