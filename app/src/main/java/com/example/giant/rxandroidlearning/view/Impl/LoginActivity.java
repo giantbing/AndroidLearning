@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.giant.rxandroidlearning.Base.BaseView;
+import com.example.giant.rxandroidlearning.Base.Impl.BaseActivity;
 import com.example.giant.rxandroidlearning.Dagger.compoents.ActivityCompoent;
 import com.example.giant.rxandroidlearning.Dagger.compoents.DaggerActivityCompoent;
 import com.example.giant.rxandroidlearning.Dagger.compoents.DaggerMainCompoent;
@@ -32,7 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class LoginActivity extends Activity implements LoginView,BaseView {
+public class LoginActivity extends BaseActivity implements LoginView,BaseView {
 
     @BindView(R.id.mainTextureView)
     TextureView mainTextureView;
@@ -66,7 +67,7 @@ public class LoginActivity extends Activity implements LoginView,BaseView {
         initclick();
         mainTextureView.setSurfaceTextureListener(VideoListener);
         progressWheel.stopSpinning();
-        ToastHelper.info(this,""+daggerTest.getI(),ToastHelper.LENGTH_SHORT,true);
+        //ToastHelper.info(this,""+daggerTest.getI(),ToastHelper.LENGTH_SHORT,true);
     }
 
 
